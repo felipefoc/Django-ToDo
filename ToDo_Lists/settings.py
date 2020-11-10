@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['9d23ed0297b0.ngrok.io', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'account.apps.AccountConfig',
+    'app1',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'ToDo_Lists.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,8 +69,11 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ToDo_Lists.wsgi.application'
+# LOGIN_REDIRECT_URL = '/admin'
 
+# LOGIN_URL = '/'
+
+WSGI_APPLICATION = 'ToDo_Lists.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -85,6 +88,7 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
