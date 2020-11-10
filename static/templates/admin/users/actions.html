@@ -1,0 +1,40 @@
+<a data-toggle="tooltip" title="Alterar senha" data-placement="top">
+    <button type="button" data-toggle="modal" id="modal"
+            data-target="#exampleModal{{user.id}}"
+            onmouseclick="dismisstoll()"
+            class="btn btn-primary btn-round">
+        <i class="material-icons">vpn_key</i>
+    </button>
+</a>
+<a type="button" methods="post" data-toggle="tooltip"
+   data-placement="top" alt="{{user.nome}}"
+   title="Editar informações">
+    <button type="button" data-toggle="modal" id="edit_modal"
+            data-target="#EditModal{{user.id}}"
+            class="btn btn-primary btn-round">
+        <i class="material-icons">edit</i>
+    </button>
+</a>
+{% if user.is_active %}
+<a type="button" methods="post" data-toggle="tooltip"
+   data-placement="top" alt="{{user.nome}} "
+   title="Desativar usuário {{user.nome}}"
+   class="btn btn-primary btn-round" id="desativar"
+   href="/admin/deactivate{{user.id}}">
+    <i class="material-icons">power_settings_new</i>
+</a>
+{% else %}
+<a type="button" methods="post" data-toggle="tooltip"
+   data-placement="top" alt="{{user.nome}} "
+   title="Ativar usuário {{user.nome}}"
+   class="btn btn-primary btn-round" id="ativar"
+   href="/admin/activate{{user.id}}">
+    <i class="material-icons">settings_power</i>
+</a>
+{% endif %}
+<a type="button" methods="post" data-toggle="tooltip" alt="{{user.nome}}"
+   data-placement="top" title="Remover usuário {{user.nome}}"
+   class="btn btn-primary btn-round" id="delete"
+   href="/admin/delete{{user.id}}">
+    <i class="material-icons">close</i>
+</a>

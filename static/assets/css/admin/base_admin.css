@@ -1,0 +1,66 @@
+body {
+    background-color: #e1e1ea;
+    }
+
+.main-panel {
+    display: none;
+    }
+
+#loading {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    margin: 100px 0px 0px -50px;
+    }
+
+.col-11 {
+    margin: 15px auto;
+    position: fixed;
+    text-align: -webkit-center;
+    transition: all 0.5s ease-in-out 0s;
+    z-index: 1031;
+    top: 20px;
+    left: 0px;
+    right: 0px;
+    }
+
+.tooltip {
+line-height: 0px;
+    }
+
+#starts {
+line-height: 100%;
+    }
+
+#administracao {
+    font-size: 16px;
+    }
+
+#admin-collapse {
+    background-color: #ff9800;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(255, 152, 0, 0.4);
+    color: white;
+}
+
+ul.nav-item {
+list-style-type:none;
+width: auto;
+font-size: 25px;
+    }
+
+#collapseExample1 i {
+font-size: 25px;
+line-height: 25px !important;
+    }
+
+
+#alert {
+    margin: 15px auto;
+    position: fixed;
+    text-align: -webkit-center;
+    transition: all 0.5s ease-in-out 0s;
+    z-index: 1031;
+    top: 20px;
+    left: 0px;
+    right: 0px;
+    }

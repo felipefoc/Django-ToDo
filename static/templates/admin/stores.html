@@ -1,0 +1,136 @@
+{% extends 'admin//base_admin.html' %}
+
+{% block title %}:: ADMIN LOJAS ::{% endblock %}
+
+
+{% block style %}
+#btncadastrar {
+display: inline-block;
+float: right;
+margin: auto;
+background-color: orange !important;
+}
+tr {
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+tbody tr:hover {
+background-color: #5f81a92b;
+}
+tr .btn{
+padding: 5px 5px;
+background-color: purple !important;
+}
+#searchbar {
+display: inline-flex;
+float: left !important;
+}
+#formbox {
+display: contents;
+text-align-last: center;
+float: right;
+}
+
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h5 class="card-title ">Lojas</h5>
+                        <p class="card-category"> Aqui estão as lojas cadastradas no sistema.</p>
+                    </div>
+                    <div class="card-body">
+                        <form class="form-inline ml-auto" method="post" action="/admin/resultado" id="formbox">
+                            <div class="form-group no-border" id="searchbar">
+                                <input type="text" class="form-control" placeholder="Procurar corretor" name="search">
+                                <button type="submit" class="btn btn-just-icon btn-round">
+                                    <i class="material-icons">search</i>
+                                </button>
+                            </div>
+                            <a href="/admin/cadastrar">
+                                <button type="button" class="btn btn-round" id="btncadastrar">
+                                    Cadastrar nova <i class="material-icons">add_business</i>
+                                </button>
+                            </a>
+                        </form>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th>Nome/Sobrenome</th>
+                                    <th>CPF/CNPJ</th>
+                                    <th>Email</th>
+                                    <th>Apelido</th>
+                                    <th>Loja</th>
+                                    <th>Gerente</th>
+                                    <th>Telefone</th>
+                                    <th>Rg</th>
+                                    <th>Criado em</th>
+                                    <th>Administrador</th>
+                                    <th>Ações</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for corretor in corretores %}
+                                <tr>
+                                    <td class="text-center">{{corretor.id}}</td>
+                                    <td>{{corretor.nome}} {{corretor.sobrenome}}</td>
+                                    <td>{{corretor.cpf}}</td>
+                                    <td>{{corretor.email}}</td>
+                                    <td>{{corretor.apelido}}</td>
+                                    <td>{{corretor.loja_nome}}</td>
+                                    <td>Gerente da loja</td>
+                                    <td>{{corretor.tel_residencial}}<br/>{{corretor.tel_cel}}</td>
+                                    <td>{{corretor.rg}}</td>
+                                    <td>{{corretor.created_at}}</td>
+                                    {% if corretor.is_admin == True %}
+                                    <td id="isadmincircle">
+                                        <div>
+                                            <span class="material-icons">check_circle</span>
+                                        </div>
+                                    </td>
+                                    {% else %}
+                                    <td id="isadmincircle">
+                                        <div>
+                                            <span class="material-icons">highlight_off</span>
+                                        </div>
+                                    </td>
+                                    {% endif %}
+                                    <td id="actions">
+                                        <button type="submit" data-toggle="tooltip" data-placement="top"
+                                                title="Mais informações" class="btn btn-primary btn-round">
+                                            <i class="material-icons">person</i>
+                                        </button>
+                                        <a type="submit" methods="post" data-toggle="tooltip"
+                                           data-placement="top"
+                                           title="Editar informações" class="btn btn-primary btn-round"
+                                           href="/admin/edit{{corretor.id}}">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                        <a type="button" methods="post" data-toggle="tooltip"
+                                           data-placement="top" title="Remover corretor"
+                                           class="btn btn-primary btn-round"
+                                           href="/admin/delete{{corretor.id}}"
+                                           onclick="return confirm('Tem certeza que deseja remover o usuário {{corretor.nome}}')">
+                                            <i class="material-icons">close</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!----------------- ENDTABLE ------------------------------->
+{% endblock %}
