@@ -1,7 +1,0 @@
-<h1>Register Page</h1>
-{% load add_attr %}
-
-<form method="post" action="">
-    {% csrf_token %}
-    {{ form.username|add_attr:"placeholder: Placeholder" }}
-    <input type="submit" name="enviar">

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from django.contrib.messages import constants as messages
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,13 +27,14 @@ SECRET_KEY = 'nmpv=gi4$-4p%!2v17p*##fhz1@f9jxic^3)ktanbcm+!o)-1q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['9d23ed0297b0.ngrok.io', '127.0.0.1']
+ALLOWED_HOSTS = ['9d23ed0297b0.ngrok.io', '127.0.0.1', '7f7045a8144c.ngrok.io']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'app1',
+    'account',
+    'home',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -69,9 +71,9 @@ TEMPLATES = [
     },
 ]
 
-# LOGIN_REDIRECT_URL = '/admin'
+LOGIN_REDIRECT_URL = '/login'
 
-# LOGIN_URL = '/'
+LOGIN_URL = '/login'
 
 WSGI_APPLICATION = 'ToDo_Lists.wsgi.application'
 
@@ -130,3 +132,10 @@ STATICFILES_DIRS = [
     '/var/www/static/',
 ]
 
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
