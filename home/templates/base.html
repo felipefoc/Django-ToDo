@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 {% load static %}
     <title>{% block title %}{% endblock %}</title>
     <!-- Required meta tags -->
@@ -115,9 +116,8 @@
     </nav>
     <div class="content">
         <div class="container-fluid">
-            <!-- Flash Messages -->
-
-            <!-- CONTENT --->
+            {% load sweetify %}
+            {% sweetify %}
             {% block content %}
             {% endblock %}
         </div>
@@ -133,6 +133,7 @@
 </div>
 
 <!--   Core JS Files   -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="{% static "assets/js/core/jquery.min.js" %}"></script>
 <script src="{% static "assets/js/core/popper.min.js" %}"></script>
 <script src="{% static "assets/js/core/bootstrap-material-design.min.js" %}"></script>

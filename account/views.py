@@ -4,16 +4,21 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import CreateUserForm, LoginForm
 from django.contrib.auth.decorators import login_required
+import sweetify as swal
+
+
 
 # Create your views here.
 def registerPage(request):
     form = CreateUserForm()
+    swal.success(request, title='Cadastro Criado')
 
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
+            swal.success(request, title='Cadastro Criado')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
@@ -38,7 +43,8 @@ def loginPage(request):
             return redirect('home')
         
         else:
-            messages.error(request, 'Usuário ou senha incorretos')
+            swal.info(request, icon='error', text='Piru', title='ola')
+            # messages.error(request, 'Usuário ou senha incorretos')
 
     context = {'form' : form}
     return render(request, 'login.html', context)

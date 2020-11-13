@@ -32,7 +32,7 @@ body {
     height: 200px;
 }
 
-#alert {
+.alert {
     margin: 15px auto;
     position: fixed;
     text-align: -webkit-center;
@@ -72,21 +72,18 @@ input:focus > i#icon1 {
 
 #continue {
     color: white;
-    }
+    }   
 
 
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
-{% for message in messages %}
-  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <span>{{ message }}</span>
-  </div>
-{% endfor %}
+          {% load sweetify %}
+            {% sweetify %}
+
 <form class="form-signin" method="post">
     {% csrf_token %}
     <div id="container">
@@ -102,12 +99,12 @@ input:focus > i#icon1 {
             {{ form.password }}
         </div>
         <button id="continue" class="btn btn-lg btn-warning btn-block" type="submit">continuar</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+        <p class="mt-5 mb-3 text-muted">Felipe Mayer &copy; 2020</p>
     </div>
 </form>
 
-
 <!--  Notifications Plugin    -->
+
 <script src="/static/assets/js/plugins/bootstrap-notify.js"></script>
 
 </body>

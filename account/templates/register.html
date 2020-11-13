@@ -1,11 +1,42 @@
-<h1>Register Page</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<h2>Register Page</h2>
 {% load add_attr %}
 
+
 <form method="post" action="{% url 'register' %}">
-    {% csrf_token %}
-    {{ form.username|add_attr:"placeholder: Username" }}
-    {{ form.email|add_attr:"placeholder: Email"}}
-    {{ form.password1|add_attr:"placeholder: Password1"}}
-    {{ form.password2|add_attr:"placeholder: Password2"}}
-    {{ form.message.errors }}
-    <button type="submit">Enviar</button>
+
+    {% csrf_token %}   
+    {{ form.username.label }} :
+    {{ form.username|add_attr:"class: form-control" }}
+    <br><br>
+    {{ form.email.label }} :
+    {{ form.email|add_attr:"class: form-control"}}
+    <br><br>
+    {{ form.password1.label }} :
+    {{ form.password1|add_attr:"class: form-control"}}
+    <br><br>
+    {{ form.password2.label }} :
+    {{ form.password2|add_attr:"class: form-control"}}
+    <br>
+    {% if form.errors %}    
+	<!-- Error messaging -->
+	<div id="errors">
+		<div class="inner">
+			<h5 style="color:red;">Ocorreram alguns erros nas informações inseridas :</h5>
+			{{ form.non_field_errors }}
+			<ul>
+				{% for field in form %}
+					{% if field.errors %}{{ field.errors }}{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<!-- Error messaging -->
+    {% endif %}
+    <button type="submit" class="btn btn-info btn-warning">Enviar</button>
+    {% endblock %}
+</form>

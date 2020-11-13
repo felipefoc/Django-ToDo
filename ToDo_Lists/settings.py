@@ -27,14 +27,17 @@ SECRET_KEY = 'nmpv=gi4$-4p%!2v17p*##fhz1@f9jxic^3)ktanbcm+!o)-1q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['9d23ed0297b0.ngrok.io', '127.0.0.1', '7f7045a8144c.ngrok.io']
+ALLOWED_HOSTS = ['9d23ed0297b0.ngrok.io', '127.0.0.1', '7f7045a8144c.ngrok.io', 'fd8856885432.ngrok.io', '*']
 
+# SweetAlert
+SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
 
 # Application definition
 
 INSTALLED_APPS = [
     'account',
     'home',
+    'sweetify',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
