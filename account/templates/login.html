@@ -89,7 +89,7 @@ input:focus > i#icon1 {
     <div id="container">
         <img class="mb-4" src="https://svgsilh.com/svg/1801287.svg" alt="" width="72"
              height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Digite seu apelido e senha.</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Digite seu usuário e senha.</h1>
         <div class="form" id="cont1">
             <i class="material-icons" id="icon1">account_circle</i>
             {{ form.username }}
@@ -98,8 +98,9 @@ input:focus > i#icon1 {
             <i class="material-icons">lock</i>
             {{ form.password }}
         </div>
+        <p class='small text-muted'>Ainda não tem conta ? <a href={% url 'register' %}>Cadastre-se</a></p>
         <button id="continue" class="btn btn-lg btn-warning btn-block" type="submit">continuar</button>
-        <p class="mt-5 mb-3 text-muted">Felipe Mayer &copy; 2020</p>
+        <span class="mt-5 mb-3 text-muted">Felipe Mayer &copy; 2020</span>
     </div>
 </form>
 

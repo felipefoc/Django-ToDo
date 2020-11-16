@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="post" action="{% url 'add_task' %}">
+
+    {% csrf_token %}   
+    {{ form.name.label }}
+	{{ form.name }}
+    {{ form.tasktext.label }}
+    {{ form.tasktext }}
+
+    <button type="submit" class="btn btn-info btn-warning">Criar tarefa</button>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</form>
+
+{% endblock content %}

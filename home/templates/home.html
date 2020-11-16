@@ -1,6 +1,34 @@
 {% extends 'base.html' %}
 
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+{% endblock %}
+
 {% block content %}
 
-Binho
+
+<table class='table'>
+    <thead>
+        <tr>
+            <th>Nome da tarefa</th>
+            <th>Observações</th>
+            <th>Adicionada em</th>
+            <th>Finalizar</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for i in tasks %}
+        <tr>            
+            <td>{{ i.name }}</td>
+            <td>{{ i.tasktext }}</td>
+            <td>{{ i.create_at }}</td>
+            <td><a href="{% url 'remove_task' pk=i.pk%}"><i class="material-icons">done</i></a></td>            
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
 {% endblock %}

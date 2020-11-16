@@ -35,6 +35,7 @@ SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
 # Application definition
 
 INSTALLED_APPS = [
+    'task',
     'account',
     'home',
     'sweetify',
