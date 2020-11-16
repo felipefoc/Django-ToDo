@@ -5,13 +5,10 @@ from account.models import Task
 
 
 class TaskForm(ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}), label='Nome :')
+    tasktext = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}), label='Tarefa :')
+
     class Meta:
         model = Task
         fields = ['name', 'tasktext']
-        labels = { 'name' : 'Nome :',
-                    'tasktext' : 'Tarefa :',
-                 }
-        name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control',
-        'placeholder':'Nome'}))
-        tasktext = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control',
-        'placeholder':'Tarefa'}))
+

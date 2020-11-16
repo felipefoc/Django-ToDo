@@ -11,7 +11,6 @@ import sweetify as swal
 # Create your views here.
 def registerPage(request):
     form = CreateUserForm()
-    swal.info(request, icon='error', text='Piru', title='ola')
 
     if request.method == 'POST':
         form = CreateUserForm(request.POST)

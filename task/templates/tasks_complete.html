@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 <table class='table'>
     <thead>
         <tr>
             <th>Nome da tarefa</th>
             <th>Observações</th>
-            <th>Adicionada em</th>
-            <th>Finalizar</th>
+            <th>Criada em</th>
+            <th>Finalizada em</th>
+            <th>Apagar</th>
         </tr>
     </thead>
     <tbody>
@@ -17,7 +17,8 @@
             <td>{{ i.name }}</td>
             <td>{{ i.tasktext }}</td>
             <td>{{ i.create_at }}</td>
-            <td><a href="{% url 'complete_task' pk=i.pk%}"><i class="material-icons">done</i></a></td>            
+            <td>{{ i.ended_date}}</td>
+            <td><a href="{% url 'remove_task' pk=i.pk%}"><i class="material-icons">clear</i></a></td>            
         </tr>
     {% endfor %}
     </tbody>
