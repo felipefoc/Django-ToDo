@@ -67,7 +67,12 @@
                     <p>Sobre</p>
                 </a>
             </li>
-
+            <li class="nav-item {% if request.path == '/youtube/' %}active {% endif %}">
+                <a class="nav-link" href="{% url 'youtube' %}">
+                    <i class="material-icons">youtube</i>
+                    <p>YouTube</p>
+                </a>
+            </li>
             {% if user.is_superuser == True %}
             <li class="nav-item">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;" role="button"

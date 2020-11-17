@@ -36,6 +36,7 @@ SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
 # Application definition
 
 INSTALLED_APPS = [
+    'youtube',
     'task',
     'account',
     'home',
