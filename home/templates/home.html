@@ -9,15 +9,17 @@
             <th>Observações</th>
             <th>Adicionada em</th>
             <th>Finalizar</th>
+            <th>Editar</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody> 
     {% for i in tasks %}
         <tr>            
             <td>{{ i.name }}</td>
             <td>{{ i.tasktext }}</td>
             <td>{{ i.create_at }}</td>
-            <td><a href="{% url 'complete_task' pk=i.pk%}"><i class="material-icons">done</i></a></td>            
+            <td><a href="{% url 'complete_task' pk=i.pk %}"><i class="material-icons">done</i></a></td> 
+            <td><a href="{% url 'edit_task' i.pk %}"><i class="material-icons">edit</i></a></td>          
         </tr>
     {% endfor %}
     </tbody>

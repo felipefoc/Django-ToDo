@@ -54,3 +54,26 @@ def remove_task(request, pk=None):
     else:
         pass
 
+
+@login_required
+def edit_task(request, pk=None):
+    task = Task.objects.get(pk=pk) 
+    form = TaskForm(instance=task)
+    form_old_name = task.name
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            swal.success(request, 
+            title='Editado',
+            text='A tarefa "{}" foi editada !'.format(form_old_name),
+            icon='info')
+            return redirect('/home')
+    context = {'form': form,
+                'pk':pk}
+    return render(request, 'edit_task.html', context)
+
+
+
+
+

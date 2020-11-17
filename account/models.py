@@ -12,11 +12,11 @@ class Task(models.Model):
     is_active = models.BooleanField(default=True)
     ended_date = models.DateTimeField(default=now, editable=False)
 
-    
+
     def __str__(self):
         return '{}'.format(self.name)
 
     class Meta:
-        ordering = ['id']
+        ordering = ['pk']
 
 

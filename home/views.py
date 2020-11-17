@@ -16,3 +16,4 @@ def homePage(request):
 @login_required
 def aboutPage(request):
     return render(request, 'about.html')
+
