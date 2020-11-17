@@ -3,6 +3,8 @@
 import os
 import sys
 
+import django_heroku
+
 
 def main():
     """Run administrative tasks."""
