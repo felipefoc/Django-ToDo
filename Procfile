@@ -1,1 +1,1 @@
-web: gunicorn tutorial_heroku.wsgi
+web: gunicorn todo_list.wsgi
