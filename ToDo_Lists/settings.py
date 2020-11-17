@@ -58,6 +58,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_COOKIE_SECURE = True
+
 ROOT_URLCONF = 'ToDo_Lists.urls'
 
 TEMPLATES = [
