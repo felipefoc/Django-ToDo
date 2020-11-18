@@ -8,7 +8,7 @@ from django.utils.timezone import now
 class Youtube_file(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    thumbnail = models.CharField(max_length=100)
+    thumbnail = models.CharField(max_length=300)
     url = models.CharField(max_length=100)
     
 
