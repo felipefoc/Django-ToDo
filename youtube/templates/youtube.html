@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
+{% block style %}
+.card {
+    display: inline-table;
+}
 
+{% endblock %}
 {% block content %}
 
 
@@ -10,8 +15,18 @@
     {{form.url}}
     {{form.url.errors}}
     
-
     <button type="submit" class="btn btn-info btn-danger">Pesquisar video</button>
 </form>
+
+<h1> Histórico de videos </h1>
+{% for video in history %}
+<div class="card" style="width: 20rem;">
+  <img class="card-img-top" src="{{video.thumbnail}}" rel="nofollow" alt="Card image cap">
+  <div class="card-body">
+    <p class="card-text">{{video.title}}</p><br>
+    <p class="card-text"><a href="{{video.url}}">{{video.url}}</a></p>
+  </div>
+</div>
+{% endfor %}
 
 {% endblock %}
