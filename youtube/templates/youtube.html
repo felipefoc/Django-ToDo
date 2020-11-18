@@ -1,2 +1,17 @@
 {% extends 'base.html' %}
 
+{% block content %}
+
+
+<form method="POST" action="">
+{% csrf_token %}
+
+    {{form.url.label}}
+    {{form.url}}
+    {{form.url.errors}}
+    
+
+    <button type="submit" class="btn btn-info btn-danger">Pesquisar video</button>
+</form>
+
+{% endblock %}

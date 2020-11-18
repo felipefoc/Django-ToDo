@@ -3,5 +3,7 @@ from . import views
 
 
 urlpatterns = [
-    path('youtube/', views.youtube, name='youtube'),
+    path('youtube/', views.download_video, name='youtube'),
+    path('youtube/download/', views.download, name='download'),
+    path('youtube/download/delete', views.delete_file, name='delete'),
     ]   

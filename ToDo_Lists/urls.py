@@ -24,5 +24,6 @@ urlpatterns = [
     path('', include('account.urls')),
     path('', include('home.urls')),
     path('', include('task.urls')),
+    path('', include('youtube.urls')),
     ]
 

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<form method="GET" action="{% url 'download' %}">
+{% csrf_token %}
+
+    {{form.title }}
+    <img src="{{img}}">
+    {{form.url}}
+    {{video}}
+    
+    <button type="submit" class="btn btn-info btn-danger">Baixar</button>
+</form>
+
+{% endblock %}
