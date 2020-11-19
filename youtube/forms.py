@@ -1,6 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 from youtube.models import Youtube_file
+from django.contrib.auth.models import User
 
 
 class YouTubeForm(ModelForm):
@@ -22,5 +23,5 @@ class YouTube_add(forms.Form):
     url = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
     
     class Meta:
-        model = Youtube_file
+        model = User
         fields = ['title', 'thumbnail']

@@ -3,7 +3,7 @@
 {% block content %}
 
 
-<form method="GET" action="{% url 'download' %}">
+<form method="POST" action="{% url 'download' %}">
 {% csrf_token %}
 
     {{form.title }}

@@ -10,21 +10,25 @@ import sweetify as swal
 
 
 def delete_file(request):
-    path = 'youtube/downloads/{}'.format(request.user)
+    path = 'youtube/downloads/tmp'
     shutil.rmtree(path)
 
 
 # Create your views here.
 def download_video(request):
-    history = Youtube_file.objects.filter(user=request.user)
+    history = Youtube_file.objects.filter(user=request.user.id)
     if request.method == 'POST':
         video = request.POST.get('url')
-        yt = YouTube(video)
+        try:
+            yt = YouTube(video)
+        except error:
+            print(error)
         data = {'title': yt.title, 'thumbnail': yt.thumbnail_url, 'url': video}
         form = YouTube_add(initial=data)
         model = Youtube_file(title=yt.title,
-                            thumbnail=yt.thumbnail_url,
-                            url=video)
+                                thumbnail=yt.thumbnail_url,
+                                url=video)
+        model.user = request.user
         model.save()
         context = {'form': form, 'img':yt.thumbnail_url, 'video': video}     
         return render(request, 'youtube_info.html', context)
@@ -39,10 +43,10 @@ def download_video(request):
     
 
 def download(request):
-    x = request.GET['url']
+    x = request.POST.get('url')
     video = YouTube(x)
-    video.streams.first().download('youtube/downloads/{}/'.format(request.user))
-    path = ('youtube/downloads/{}/{}.mp4'.format(request.user, video.title))
+    video.streams.first().download('youtube/downloads/tmp/', filename='video')
+    path = ('youtube/downloads/tmp/video.mp4')
     with open(path, 'rb') as fh:
         response = HttpResponse(fh.read(), content_type="video/mp4/force-download")
         response['Content-Disposition'] = 'attachment; filename=downloaded_video.mp4'
