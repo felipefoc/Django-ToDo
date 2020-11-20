@@ -9,8 +9,10 @@
     {{form.title }}
     <img src="{{img}}">
     {{form.url}}
-    
+
     <button type="submit" class="btn btn-info btn-danger">Baixar</button>
+    <button type="submit" class="btn btn-info btn-info" formaction="{% url 'download_only_audio' %}">Baixar somente o Áudio</button>
 </form>
+
 
 {% endblock %}

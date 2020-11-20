@@ -61,16 +61,16 @@
                     <p>Tasks finalizadas</p>
                 </a>
             </li>
-            <li class="nav-item {% if request.path == '/about/' %}active {% endif %}">
-                <a class="nav-link" href="{% url 'about' %}">
-                    <i class="material-icons">library_books</i>
-                    <p>Sobre</p>
-                </a>
-            </li>
             <li class="nav-item {% if request.path == '/youtube/' %}active {% endif %}">
                 <a class="nav-link" href="{% url 'youtube' %}">
                     <i class="material-icons">movie</i>
                     <p>YouTube</p>
+                </a>
+            </li>
+            <li class="nav-item {% if request.path == '/about/' %}active {% endif %}">
+                <a class="nav-link" href="{% url 'about' %}">
+                    <i class="material-icons">library_books</i>
+                    <p>Sobre</p>
                 </a>
             </li>
             {% if user.is_superuser == True %}

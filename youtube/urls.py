@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [
     path('youtube/', views.download_video, name='youtube'),
     path('youtube/download/', views.download, name='download'),
+    path('youtube/download_only_audio/', views.download_only_audio, name='download_only_audio'),
     path('youtube/download/delete', views.delete_file, name='delete'),
     ]   

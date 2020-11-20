@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from youtube.forms import YouTubeForm, YouTube_add
 from youtube.models import Youtube_file
 from pytube import YouTube
@@ -17,6 +18,17 @@ def delete_file(request):
 # Create your views here.
 def download_video(request):
     history = Youtube_file.objects.filter(user=request.user.id)
+    paginator = Paginator(history, 4)
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+
     if request.method == 'POST':
         video = request.POST.get('url')
         try:
@@ -38,7 +50,7 @@ def download_video(request):
             delete_file(request)
         except FileNotFoundError as error:
             print(error)
-        context = {'form': form, 'history': history}
+        context = {'history':history, 'form': form, 'page':page, 'posts':posts}
         return render(request, 'youtube.html', context)
     
 
@@ -52,6 +64,16 @@ def download(request):
         response['Content-Disposition'] = 'attachment; filename=downloaded_video.mp4'
         return response
 
+
+def download_only_audio(request):
+    x = request.POST.get('url')
+    audio = YouTube(x)
+    audio.streams.filter(only_audio=True).first().download('youtube/downloads/tmp/', filename='audio')
+    path = ('youtube/downloads/tmp/audio.mp4')
+    with open(path, 'rb') as fh:
+        response = HttpResponse(fh.read(), content_type="audio/mp3/force-download_only_audio")
+        response['Content-Disposition'] = 'attachment; filename=downloaded_audio.mp3'
+        return response
     
 
 
