@@ -13,6 +13,28 @@ table thead th {
 table { 
     display: table-cell;
     padding: initial;
+}
 
+#cards {
+    display: inline-table;
+}
 
+#material-icon {
+    position: absolute;
+    left: 90%;
+    top: 3%;
+    border-radius: 20px;
+    background: white;
+    border-color: black;
+    color: black;
+}
+
+#material-icons {
+    position: absolute;
+    left: 2%;
+    top: 3%;
+    border-radius: 20px;
+    background: white;
+    border-color: black;
+    color: black;
 }

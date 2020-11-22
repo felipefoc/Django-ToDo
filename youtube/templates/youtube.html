@@ -1,28 +1,12 @@
 {% extends 'base.html' %}
-{% block style %}
-.card {
-    display: inline-table;
-}
-#material-icon {
-    position: absolute;
-    left: 90%;
-    top: 3%;
-    border-radius: 20px;
-    background: white;
-    border-color: black;
-    color: black;
-}
-#material-icons {
-    position: absolute;
-    left: 2%;
-    top: 3%;
-    border-radius: 20px;
-    background: white;
-    border-color: black;
-    color: black;
-}
+{% load static %}
 
-{% endblock %}
+{% block head %}
+<link href="{% static "assets/css/youtube/youtube.css" %}" rel="stylesheet"/>
+
+{% endblock head %}
+
+
 {% block content %}
 
 
@@ -40,7 +24,7 @@
 <h2> Histórico de videos ({{history|length}})</h2>
 
 {% for video in posts %}
-<div class="card" style="width: 20rem;">
+<div class="card" style="width: 20rem;" id="cards">
   <img class="card-img-top" src="{{video.thumbnail}}" rel="nofollow" alt="Card image cap">
   <a href="{% url 'download_api' video.id %}" id="material-icon" data-toggle="tooltip" title="Baixar novamente" <i class="material-icons">get_app</i></a>
   <a href="{% url 'delete_api' video.id %}" id="material-icons" data-toggle="tooltip" title="Excluir do histórico" <i class="material-icons">delete</i></a>
@@ -54,10 +38,5 @@
 
 {% include 'pagination.html' with page=posts %}
 
-<script type="javascript">
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-</script>
 
 {% endblock %}
