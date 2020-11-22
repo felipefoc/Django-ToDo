@@ -12,7 +12,9 @@ class Youtube_file(models.Model):
     thumbnail = models.CharField(max_length=300)
     url = models.CharField(max_length=300)
     
-
+    class Meta:
+        ordering = ['pk']
+    
     def __str__(self):
         return '{}'.format(self.title)
 

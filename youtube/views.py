@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
 from youtube.forms import YouTubeForm, YouTube_add
 from youtube.models import Youtube_file
 from pytube import YouTube
@@ -10,14 +11,15 @@ from django.http import FileResponse, HttpResponse
 import sweetify as swal
 
 
+@login_required
 def delete_file(request):
     path = 'youtube/downloads/tmp'
     shutil.rmtree(path)
 
 
-# Create your views here.
+@login_required
 def download_video(request):
-    history = Youtube_file.objects.filter(user=request.user.id)
+    history = Youtube_file.objects.filter(user=request.user.id).reverse()
     paginator = Paginator(history, 4)
     page = request.GET.get('page')
 
@@ -54,6 +56,8 @@ def download_video(request):
         return render(request, 'youtube.html', context)
     
 
+
+@login_required
 def download(request):
     x = request.POST.get('url')
     video = YouTube(x)
@@ -62,9 +66,12 @@ def download(request):
     with open(path, 'rb') as fh:
         response = HttpResponse(fh.read(), content_type="video/mp4/force-download")
         response['Content-Disposition'] = 'attachment; filename=downloaded_video.mp4'
+        print('ola')
         return response
 
 
+
+@login_required
 def download_only_audio(request):
     x = request.POST.get('url')
     audio = YouTube(x)
