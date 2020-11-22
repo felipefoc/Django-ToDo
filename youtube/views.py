@@ -80,14 +80,16 @@ def download_only_audio(request):
     audio = YouTube(x)
     audio.streams.filter(only_audio=True).first().download('youtube/downloads/tmp/', filename='audio')
     path = ('youtube/downloads/tmp/audio.mp4')
+    title = audio.title
+    exceptions = ["/","?","\ ","$",":", ">", "<", "'",'"', "|", "*", ".", ";"]
+    for i in exceptions:
+        title = title.replace(i, "")
     with open(path, 'rb') as fh:
         response = HttpResponse(fh.read(), content_type="audio/mp3/force-download_only_audio")
-        response['Content-Disposition'] = 'attachment; filename=downloaded_audio.mp3'
+        response['Content-Disposition'] = 'attachment; filename={}.mp3'.format(audio.title)
         return response
     
 
-
-    
 
 
 ## Api
@@ -103,6 +105,13 @@ def download_api(request, id):
             title = title.replace(i, "")
         with open(path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="video/mp4/force-download")
-            response['Content-Disposition'] = 'attachment; filename={}.mp4'.format(title)
+            response['Content-Disposition'] = 'attachment; filename={}.mp4'.format(video.title)
             return response
+
+
+def delete_api(request, id):
+    if request.method == 'GET':
+        video_id = Youtube_file.objects.get(pk=id).delete()
+        swal.error(request, title="Deletado", text="Video deletado com sucesso", icon="error")
+        return redirect('/youtube')
 

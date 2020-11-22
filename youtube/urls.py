@@ -8,4 +8,5 @@ urlpatterns = [
     path('youtube/download_api/<int:id>', views.download_api, name='download_api'),
     path('youtube/download_only_audio/', views.download_only_audio, name='download_only_audio'),
     path('youtube/download/delete', views.delete_file, name='delete'),
+    path('youtube/delete_api/<int:id>', views.delete_api, name='delete_api'),
     ]   

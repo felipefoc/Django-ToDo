@@ -12,6 +12,15 @@
     border-color: black;
     color: black;
 }
+#material-icons {
+    position: absolute;
+    left: 2%;
+    top: 3%;
+    border-radius: 20px;
+    background: white;
+    border-color: black;
+    color: black;
+}
 
 {% endblock %}
 {% block content %}
@@ -34,6 +43,7 @@
 <div class="card" style="width: 20rem;">
   <img class="card-img-top" src="{{video.thumbnail}}" rel="nofollow" alt="Card image cap">
   <a href="{% url 'download_api' video.id %}" id="material-icon" data-toggle="tooltip" title="Baixar novamente" <i class="material-icons">get_app</i></a>
+  <a href="{% url 'delete_api' video.id %}" id="material-icons" data-toggle="tooltip" title="Excluir do histórico" <i class="material-icons">delete</i></a>
   <div class="card-body">
     <p class="card-text">{{video.title}}</p><br>
     <p class="card-text"><a href="{{video.url}}">{{video.url}}</a></p>
