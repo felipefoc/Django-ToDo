@@ -63,10 +63,13 @@ def download(request):
     video = YouTube(x)
     video.streams.first().download('youtube/downloads/tmp/', filename='video')
     path = ('youtube/downloads/tmp/video.mp4')
+    title = video.title
+    exceptions = ["/","?","\ ","$",":", ">", "<", "'",'"', "|", "*", ".", ";"]
+    for i in exceptions:
+        title = title.replace(i, "")
     with open(path, 'rb') as fh:
         response = HttpResponse(fh.read(), content_type="video/mp4/force-download")
-        response['Content-Disposition'] = 'attachment; filename=downloaded_video.mp4'
-        print('ola')
+        response['Content-Disposition'] = 'attachment; filename={}.mp4'.format(title)
         return response
 
 
@@ -86,4 +89,20 @@ def download_only_audio(request):
 
     
 
+
+## Api
+def download_api(request, id):
+    if request.method == 'GET':
+        video_id = Youtube_file.objects.get(pk=id)
+        video = YouTube(video_id.url)
+        video.streams.first().download('youtube/downloads/tmp/', filename='video')
+        path = ('youtube/downloads/tmp/video.mp4')
+        title = video.title
+        exceptions = ["/","?","\ ","$",":", ">", "<", "'",'"', "|", "*", ".", ";"]
+        for i in exceptions:
+            title = title.replace(i, "")
+        with open(path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="video/mp4/force-download")
+            response['Content-Disposition'] = 'attachment; filename={}.mp4'.format(title)
+            return response
 

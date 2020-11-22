@@ -3,6 +3,15 @@
 .card {
     display: inline-table;
 }
+#material-icon {
+    position: absolute;
+    left: 90%;
+    top: 3%;
+    border-radius: 20px;
+    background: white;
+    border-color: black;
+    color: black;
+}
 
 {% endblock %}
 {% block content %}
@@ -16,14 +25,15 @@
     {{form.url.errors}}
     
     <button type="submit" class="btn btn-info btn-danger">Pesquisar video</button>
-    <p class="cmuted">Por conta do servidor ser <i>free</i>, videos ácima de 10 minutos respondem com <b>Timeout</b>.
+    <p class="cmuted">Por conta do servidor ser <i>free</i>, videos com mais de 10 minutos respondem com <b>Timeout</b>.
 </form>
 <br>
-<h1> Histórico de videos ({{history|length}})</h1>
+<h2> Histórico de videos ({{history|length}})</h2>
 
 {% for video in posts %}
 <div class="card" style="width: 20rem;">
   <img class="card-img-top" src="{{video.thumbnail}}" rel="nofollow" alt="Card image cap">
+  <a href="{% url 'download_api' video.id %}" id="material-icon" data-toggle="tooltip" title="Baixar novamente" <i class="material-icons">get_app</i></a>
   <div class="card-body">
     <p class="card-text">{{video.title}}</p><br>
     <p class="card-text"><a href="{{video.url}}">{{video.url}}</a></p>
@@ -34,6 +44,10 @@
 
 {% include 'pagination.html' with page=posts %}
 
-
+<script type="javascript">
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 
 {% endblock %}
